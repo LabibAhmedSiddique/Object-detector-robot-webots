@@ -1,0 +1,698 @@
+#VRML_SIM R2021b utf8
+WorldInfo {
+  coordinateSystem "NUE"
+  contactProperties [
+    ContactProperties {
+      coulombFriction [
+        0.2
+      ]
+    }
+  ]
+}
+Viewpoint {
+  orientation -0.047684736534151825 0.9641359583591931 0.2610900605164221 2.7929922838187675
+  position 1.4055186499127803 1.773583092968065 -0.9261987472405464
+  follow "robot"
+  followType "Pan and Tilt Shot"
+}
+DirectionalLight {
+  direction -1 -1.2 1
+  on FALSE
+  castShadows TRUE
+  castLensFlares TRUE
+}
+DEF wall Solid {
+  translation 0 0.08 -2.5
+  children [
+    DEF wall Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.027451 0.498039 0.286275
+        }
+      }
+      geometry Box {
+        size 5 0.15 0.03
+      }
+    }
+  ]
+  boundingObject USE wall
+}
+Robot {
+  translation 0.37730045896906833 0.07348075979969783 1.7948270288868593
+  rotation -0.0006535775884457941 0.9999997288493504 -0.0003393192622513768 2.1837507280413555
+  children [
+    GPS {
+      children [
+        Solid {
+          scale 0.8 0.8 0.8
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.776471 0.784314 0.784314
+              }
+              geometry Cylinder {
+                height 0.1
+                radius 0.05
+              }
+            }
+          ]
+        }
+      ]
+    }
+    Camera {
+      translation 0.19 0 0
+      rotation 0 -1 0 1.5708
+      children [
+        DEF camera Shape {
+          appearance PBRAppearance {
+            baseColor 0.643137 0.643137 0.643137
+            metalness 0.7
+          }
+          geometry Sphere {
+            radius 0.03
+            subdivision 4
+          }
+        }
+      ]
+      boundingObject USE camera
+      physics Physics {
+      }
+      width 1920
+      height 1080
+      recognition Recognition {
+        frameThickness 6
+      }
+    }
+    DistanceSensor {
+      translation 0.199 0 -0.0566979
+      rotation 0 -1 0 0
+      children [
+        DEF distnt Shape {
+          appearance PBRAppearance {
+            baseColor 0.545098 0.74902 1
+            metalness 0.5
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "ds_left"
+      boundingObject USE distnt
+      physics Physics {
+      }
+      lookupTable [
+        0 0 0
+        0.1 500 0
+        0.25 1000 0
+      ]
+      numberOfRays 2
+      aperture 0.75
+    }
+    DistanceSensor {
+      translation 0.199 0 0.0566979
+      rotation 0 -1 0 0
+      children [
+        DEF distnt Shape {
+          appearance PBRAppearance {
+            baseColor 0.545098 0.74902 1
+            metalness 0.5
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "ds_right"
+      boundingObject USE distnt
+      physics Physics {
+      }
+      lookupTable [
+        0 0 0
+        0.1 500 0
+        0.25 1000 0
+      ]
+      numberOfRays 2
+      aperture 0.75
+    }
+    DEF wheel01 HingeJoint {
+      jointParameters HingeJointParameters {
+        position 344.52433051491
+        axis 0 0 -1
+        anchor 0.1 0 -0.12
+      }
+      device [
+        RotationalMotor {
+          name "wheel1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.1 0 -0.12
+        rotation -0.7732858137546895 -0.44834719137408086 -0.4483456771651997 4.458065846969299
+        children [
+          DEF wheel01 Shape {
+            appearance PBRAppearance {
+              metalness 0.5
+            }
+            geometry Cylinder {
+              height 0.03
+              radius 0.07
+            }
+          }
+        ]
+        boundingObject USE wheel01
+        physics DEF wheeel_c Physics {
+        }
+        linearVelocity -0.08054008644680552 -4.299213700475677e-08 -0.11451325994809146
+        angularVelocity -1.635903849218768 -6.096051158683777e-08 1.1505727992489734
+      }
+    }
+    DEF wheel04 HingeJoint {
+      jointParameters HingeJointParameters {
+        position 190.96277568081382
+        axis 0 0 -1
+        anchor -0.12 0 0.12
+      }
+      device [
+        RotationalMotor {
+          name "wheel4"
+        }
+      ]
+      endPoint Solid {
+        translation -0.12 0 0.12
+        rotation 0.24061245268077067 -0.6863341417131361 -0.686331620671696 2.6693463307032874
+        children [
+          DEF wheel01 Shape {
+            appearance PBRAppearance {
+              metalness 0.5
+            }
+            geometry Cylinder {
+              height 0.03
+              radius 0.07
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel01
+        physics Physics {
+        }
+        linearVelocity -0.08054010475515452 -2.0958871291681143e-08 -0.1145132784888876
+        angularVelocity -1.6359038528245664 -6.347714410591829e-08 1.1505728003153748
+      }
+    }
+    DEF wheel02 HingeJoint {
+      jointParameters HingeJointParameters {
+        position 190.96272322845584
+        axis 0 0 -1
+        anchor 0.1 0 0.12
+      }
+      device [
+        RotationalMotor {
+          name "wheel2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.1 0 0.12
+        rotation 0.24063149472515985 -0.6863308037163813 -0.6863282826872004 2.6693103310789708
+        children [
+          DEF wheel01 Shape {
+            appearance PBRAppearance {
+              metalness 0.5
+            }
+            geometry Cylinder {
+              height 0.03
+              radius 0.07
+            }
+          }
+        ]
+        name "solid(2)"
+        boundingObject USE wheel01
+        physics Physics {
+        }
+        linearVelocity -0.08054008700197988 2.3389694695600147e-08 -0.11451325965045933
+        angularVelocity -1.6359038493565246 -6.268677921664463e-08 1.150572799071492
+      }
+    }
+    DEF wheel03 HingeJoint {
+      jointParameters HingeJointParameters {
+        position 344.5244060807744
+        axis 0 0 -1
+        anchor -0.12 0 -0.12
+      }
+      device [
+        RotationalMotor {
+          name "wheel3"
+        }
+      ]
+      endPoint Solid {
+        translation -0.12000006354730683 3.638564937322249e-08 -0.11999999999997767
+        rotation -0.7733126690841319 -0.4483240972870911 -0.44832245050375397 4.458099171995578
+        children [
+          DEF wheel01 Shape {
+            appearance PBRAppearance {
+              metalness 0.5
+            }
+            geometry Cylinder {
+              height 0.03
+              radius 0.07
+            }
+          }
+        ]
+        name "solid(3)"
+        boundingObject USE wheel01
+        physics Physics {
+        }
+        linearVelocity -0.08054010574722002 4.078417637795778e-08 -0.1145132802174802
+        angularVelocity -1.6359038529355912 -6.171498410241391e-08 1.1505728006495923
+      }
+    }
+    DEF robody Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+        }
+        metalness 0.1
+      }
+      geometry Box {
+        size 0.4 0.07 0.2
+      }
+    }
+  ]
+  boundingObject USE robody
+  physics Physics {
+  }
+  controller "my_controller22"
+  linearVelocity -0.0805400869778431 -2.9772605812394105e-08 -0.11451325512944083
+  angularVelocity 3.3045863239600783e-07 6.8863571347135e-08 1.1249548851377896e-07
+}
+DEF wall Solid {
+  translation 2.49 0.08 -0.00999996
+  rotation 0 1 0 -1.5707953071795862
+  children [
+    DEF wall Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.027451 0.498039 0.286275
+        }
+      }
+      geometry Box {
+        size 5 0.15 0.03
+      }
+    }
+  ]
+  name "solid(1)"
+  boundingObject USE wall
+}
+DEF wall Solid {
+  translation -2.48 0.08 -0.01
+  rotation 0 1 0 -1.5707953071795862
+  children [
+    DEF wall Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.027451 0.498039 0.286275
+        }
+      }
+      geometry Box {
+        size 5 0.15 0.03
+      }
+    }
+  ]
+  name "solid(2)"
+  boundingObject USE wall
+}
+DEF wall Solid {
+  translation 0 0.08 2.49
+  children [
+    DEF wall Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.027451 0.498039 0.286275
+        }
+      }
+      geometry Box {
+        size 5 0.15 0.03
+      }
+    }
+  ]
+  name "solid(3)"
+  boundingObject USE wall
+}
+DEF Sphere Solid {
+  translation -0.2274994230625388 0.14715200000000006 1.347297758277526
+  rotation 0.758367609734506 -0.3423063928242358 -0.5547115484080282 2.791609264734206
+  children [
+    DEF Sphere Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.8 0.501961 0.258824
+          shininess 0.5
+        }
+      }
+      geometry Sphere {
+        radius 0.15
+        subdivision 5
+      }
+    }
+  ]
+  boundingObject USE Sphere
+  physics Physics {
+    mass 5
+  }
+  recognitionColors [
+    1 0 0
+  ]
+}
+DEF Sphere Solid {
+  translation -0.534101 0.14715200000000006 2.00396
+  rotation 0.6401098263252378 -0.6241673034971451 -0.447967172331831 2.6338578361116243
+  children [
+    DEF Sphere Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.8 0.501961 0.258824
+          shininess 0.5
+        }
+      }
+      geometry Sphere {
+        radius 0.15
+        subdivision 5
+      }
+    }
+  ]
+  name "solid(5)"
+  boundingObject USE Sphere
+  physics Physics {
+    mass 5
+  }
+  linearVelocity 0 -3.6379788070917333e-16 0
+}
+DEF cone Solid {
+  translation -0.8299999999999998 0.2500190000000012 0.8200000000000001
+  rotation 0.4638287762424637 -0.318812216917837 -0.8265722210873968 2.1921952125810938e-15
+  children [
+    DEF cone Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.129412 0.8 0.607843
+        }
+      }
+      geometry Cone {
+        bottomRadius 0.15
+        height 0.5
+        subdivision 20
+      }
+    }
+  ]
+  boundingObject Group {
+    children [
+      DEF upper_cylinder Transform {
+        translation 0 0.145 0
+        children [
+          Cylinder {
+            height 0.25
+            radius 0.07
+          }
+        ]
+      }
+      DEF lower_cylinder Transform {
+        translation 0 -0.121 0
+        children [
+          Cylinder {
+            height 0.25
+            radius 0.15
+          }
+        ]
+      }
+    ]
+  }
+  physics Physics {
+    mass 5
+  }
+  linearVelocity 7.32484342474466e-17 -9.640643838792637e-15 3.149971847043929e-17
+  angularVelocity 1.4519010336820299e-16 5.59208119408347e-17 -4.519754231596677e-16
+}
+DEF chair Solid {
+  translation 0.508465779298912 -0.25524524999999965 0.9559910621027639
+  rotation 1.27855158370525e-15 1 -5.908892530291164e-17 0.2173454024025353
+  children [
+    DEF chair_er_pa1 Transform {
+      translation 0.09 0.36 -0.08
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.333333 0.333333 0
+            }
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 0.015
+          }
+        }
+      ]
+    }
+    DEF chair_er_pa2 Transform {
+      translation -0.08 0.36 0.08
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.333333 0.333333 0
+            }
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 0.015
+          }
+        }
+      ]
+    }
+    DEF chair_er_pa3 Transform {
+      translation -0.09 0.36 -0.08
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.333333 0.333333 0
+            }
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 0.015
+          }
+        }
+      ]
+    }
+    DEF chair_er_pa4 Transform {
+      translation 0.08 0.36 0.08
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.333333 0.333333 0
+            }
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 0.015
+          }
+        }
+      ]
+    }
+    DEF chair_er_pasa Transform {
+      translation 0 0.46 0
+      children [
+        DEF plane Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.333333 0.333333 0.498039
+            }
+          }
+          geometry Box {
+            size 0.2 0.013 0.2
+          }
+        }
+      ]
+    }
+  ]
+  boundingObject Group {
+    children [
+      USE chair_er_pa3
+      USE chair_er_pa2
+      USE chair_er_pa1
+      USE chair_er_pasa
+      USE chair_er_pa4
+    ]
+  }
+  physics Physics {
+    mass 5
+  }
+  linearVelocity -2.202399495602331e-17 -2.7284841053190605e-15 3.990438545093539e-18
+  angularVelocity -1.8193417819294542e-16 -5.604446046240975e-17 -1.0901331736156484e-16
+}
+DEF chair Solid {
+  translation 1.1018703776885446 -0.2552452499427725 0.15085107430573597
+  rotation 7.751653596008172e-10 0.9999999999999999 -1.1189541572078997e-09 0.21792810918900768
+  children [
+    DEF chair_er_pa1 Transform {
+      translation 0.09 0.36 -0.08
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.333333 0.333333 0
+            }
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 0.015
+          }
+        }
+      ]
+    }
+    DEF chair_er_pa2 Transform {
+      translation -0.08 0.36 0.08
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.333333 0.333333 0
+            }
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 0.015
+          }
+        }
+      ]
+    }
+    DEF chair_er_pa3 Transform {
+      translation -0.09 0.36 -0.08
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.333333 0.333333 0
+            }
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 0.015
+          }
+        }
+      ]
+    }
+    DEF chair_er_pa4 Transform {
+      translation 0.08 0.36 0.08
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.333333 0.333333 0
+            }
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 0.015
+          }
+        }
+      ]
+    }
+    DEF chair_er_pasa Transform {
+      translation 0 0.46 0
+      children [
+        DEF plane Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.333333 0.333333 0.498039
+            }
+          }
+          geometry Box {
+            size 0.2 0.013 0.2
+          }
+        }
+      ]
+    }
+  ]
+  name "solid(4)"
+  boundingObject Group {
+    children [
+      USE chair_er_pa3
+      USE chair_er_pa2
+      USE chair_er_pa1
+      USE chair_er_pasa
+      USE chair_er_pa4
+    ]
+  }
+  physics Physics {
+    mass 5
+  }
+  linearVelocity -2.9345437076648337e-10 -4.4777384573536244e-10 -1.585535144182733e-10
+  angularVelocity -1.0737651519384376e-09 1.1669757836369548e-17 1.9873475494710914e-09
+}
+DEF floor Solid {
+  children [
+    DEF floor Shape {
+      appearance PBRAppearance {
+        baseColor 0.133333 0.333333 0.188235
+        metalness 0.4
+      }
+      geometry Box {
+        size 5 0.01 5
+      }
+    }
+  ]
+  boundingObject USE floor
+}
+TexturedBackground {
+  texture "entrance_hall"
+}
+DEF baksho Solid {
+  translation -0.74 0.10264560000033549 1.0428802389038569e-16
+  rotation 0.013203135187267045 -0.9991280059192952 0.03960940556180271 4.305297041540871e-16
+  children [
+    DEF baksho Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0.498039
+        roughness 0.6
+        metalness 0.3
+      }
+      geometry Box {
+        size 0.2 0.2 0.2
+      }
+    }
+  ]
+  name "solid(6)"
+  boundingObject USE baksho
+  physics Physics {
+    mass 6
+  }
+  recognitionColors [
+    0.333333 0.333333 0.498039
+  ]
+}
+DEF baksho Solid {
+  translation 0.630743322308234 0.10264560000000165 -1.5282233489566306
+  rotation 6.070086143896011e-10 -1 -8.963006773467654e-10 0.004657222986029524
+  children [
+    DEF baksho Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0.498039
+        metalness 0.4
+      }
+      geometry Box {
+        size 0.2 0.2 0.2
+      }
+    }
+  ]
+  name "solid(7)"
+  boundingObject USE baksho
+  physics Physics {
+    mass 6
+  }
+  linearVelocity -3.2393364510468724e-12 -1.3073986337983512e-14 -2.2048450725877707e-12
+  angularVelocity -2.2045654191064488e-11 2.3947069620522982e-17 3.238938006689688e-11
+}
+TexturedBackgroundLight {
+  texture "stadium"
+}
